@@ -102,3 +102,70 @@ select count(worker_id) , department from worker group by department order by de
 
 #24
 select * from worker, title where title.worker_title="manager" and worker.worker_id=title.worker_ref_id;
+
+#25
+SELECT FIRST_NAME, LAST_NAME, COUNT(*) FROM Worker GROUP BY FIRST_NAME, LAST_NAME HAVING COUNT(*) > 1;
+
+#28
+create table work as select * from worker;
+
+#29
+SELECT * FROM Worker w JOIN title t ON w.WORKER_ID = t.WORKER_ref_ID;
+
+#30
+SELECT * FROM Worker w WHERE NOT EXISTS (SELECT 1 FROM title a WHERE w.WORKER_ID = a.WORKER_ref_ID);
+
+#31
+SELECT NOW(); 
+
+#32
+select * from worker order by worker_id limit 10;
+
+#33
+select salary from worker order by salary desc limit 5 offset 4;
+
+#34
+select SALARY FROM Worker w1 WHERE 4 = (SELECT COUNT(DISTINCT SALARY) FROM Worker w2 WHERE w2.SALARY > w1.SALARY);
+
+#36
+select MAX(SALARY) FROM Worker WHERE SALARY < (SELECT MAX(SALARY) FROM Worker); 
+
+#37
+select * FROM Worker UNION ALL SELECT * FROM Worker WHERE WORKER_ID = 1 LIMIT 1;
+
+#38
+SELECT * FROM Worker w JOIN title t ON w.WORKER_ID = t.WORKER_ref_ID;
+
+#40
+select departmet  FROM Worker GROUP BY department HAVING COUNT(*) < 5;
+
+#41
+select count(worker_id),department from worker group by department;
+
+#42
+select * FROM worker ORDER BY worker_ID DESC LIMIT 1;
+
+#43
+select * FROM worker LIMIT 1;
+
+#44
+select * from worker order by worker_id desc limit 5;
+
+#45
+select department, first_name, last_name, salary from worker w where salary = (select max(salary)
+from worker where department = w.department);
+
+#46
+select salary from worker order by salary desc limit 3;
+
+#47
+select salary from worker order by salary limit 3;
+
+#48
+select distinct(salary) from worker order by salary desc limit 1 offset 3;
+
+#49
+select department,sum(salary) as totalsalary from worker group by department;
+
+#50
+select first_name from worker where salary = (select max(salary) from worker);
